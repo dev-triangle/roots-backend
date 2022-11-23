@@ -44,3 +44,23 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     def tokens(self):
         return ''
+
+class Trending(models.Model):
+    place_name=models.CharField(max_length=100)
+    place_image=models.ImageField(upload_to='trending_images')
+    place_location=models.CharField(max_length=100)
+    trending_item=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.place_name
+
+class Place(models.Model):
+    place_name=models.CharField(max_length=100)
+    place_image=models.ImageField(upload_to='place_images')
+    place_description=models.TextField(max_length=1000)
+
+class Activities(models.Model):
+    activity_name=models.CharField(max_length=100)
+    activity_image=models.ImageField(upload_to='activity_images')
+    place_foreign=models.CharField(max_length=100)
+    activity_description=models.TextField(max_length=1000)

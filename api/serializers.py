@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import(User)
+from .models import(User,Trending,Place,Activities)
 from rest_framework.permissions import IsAuthenticated
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
@@ -23,3 +23,21 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=['id','username','email']
+
+class TrendingSerializer(serializers.ModelSerializer):
+    place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Trending
+        fields='__all__'
+
+class PlaceSerializer(serializers.ModelSerializer):
+    place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Place
+        fields='__all__'
+
+class ActivitiesSerializer(serializers.ModelSerializer):
+    place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Activities
+        fields='__all__'
