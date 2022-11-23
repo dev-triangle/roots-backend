@@ -1,11 +1,23 @@
 from rest_framework import generics,mixins,viewsets,status
-from .models import (User,)
-from .serializers import (UserSerializer,RegisterSerializer,)
+from .models import (User,Trending,Place,Activities)
+from .serializers import (UserSerializer,RegisterSerializer,TrendingSerializer,PlaceSerializer,ActivitiesSerializer)
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 # Create your views here.
+class ActivitiesView(viewsets.GenericViewSet,mixins.ListModelMixin):
+    serializer_class=ActivitiesSerializer
+    queryset=Activities.objects.all()
+
+class PlaceView(viewsets.GenericViewSet,mixins.ListModelMixin):
+    serializer_class=PlaceSerializer
+    queryset=Place.objects.all()
+
+class TrendingViewSet(viewsets.GenericViewSet,mixins.ListModelMixin):
+    serializer_class=TrendingSerializer
+    queryset=Trending.objects.all()
+
 class RegisterView(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     serializer_class=RegisterSerializer
     queryset=User.objects.all()
