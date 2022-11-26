@@ -1,6 +1,6 @@
 from rest_framework import generics,mixins,viewsets,status
-from .models import (User,Trending,Place,Activities)
-from .serializers import (UserSerializer,RegisterSerializer,TrendingSerializer,PlaceSerializer,ActivitiesSerializer)
+from .models import (User,Trending,Place,Activities,Guide,Item,Festival)
+from .serializers import (UserSerializer,RegisterSerializer,TrendingSerializer,PlaceSerializer,ActivitiesSerializer,FestivalSerializer,ItemSerializer,GuideSerializer)
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -21,6 +21,18 @@ class TrendingViewSet(viewsets.GenericViewSet,mixins.ListModelMixin):
 class RegisterView(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     serializer_class=RegisterSerializer
     queryset=User.objects.all()
+
+class FestivalViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    serializer_class=FestivalSerializer
+    queryset=Festival.objects.all()
+
+class ItemViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    serializer_class=ItemSerializer
+    queryset=Item.objects.all()
+
+class GuideViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    serializer_class=GuideSerializer
+    queryset=Guide.objects.all()
 
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]

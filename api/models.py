@@ -59,8 +59,41 @@ class Place(models.Model):
     place_image=models.ImageField(upload_to='place_images')
     place_description=models.TextField(max_length=1000)
 
+    def __str__(self):
+        return self.place_name
+
 class Activities(models.Model):
     activity_name=models.CharField(max_length=100)
     activity_image=models.ImageField(upload_to='activity_images')
     place_foreign=models.CharField(max_length=100)
     activity_description=models.TextField(max_length=1000)
+
+    def __str__(self):
+        return(self.activity_name)
+
+class Festival(models.Model):
+    festival_name=models.CharField(max_length=100)
+    festival_desc=models.TextField(max_length=300)
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    festival_image=models.ImageField(upload_to='festival_image',blank=True,null=True)
+
+    def __str__(self):
+        return(self.festival_name)
+    
+class Item(models.Model):
+    item_name=models.CharField(max_length=100)
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    item_desc=models.TextField(max_length=300)
+    item_image=models.ImageField(upload_to='item_image',blank=True,null=True)
+
+    def __str__(self):
+        return(self.item_name)
+    
+class Guide(models.Model):
+    guide_name=models.CharField(max_length=100)
+    guide_image=models.ImageField(upload_to='guide_images',blank=True,null=True)
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    guide_description=models.TextField(max_length=200)
+
+    def __str__(self):
+        return(self.guide_name)
