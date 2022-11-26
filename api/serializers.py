@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import(User,Trending,Place,Activities)
+from .models import(User,Trending,Place,Activities,Guide,Item,Festival)
 from rest_framework.permissions import IsAuthenticated
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
@@ -40,4 +40,22 @@ class ActivitiesSerializer(serializers.ModelSerializer):
     place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
     class Meta:
         model=Activities
+        fields='__all__'
+
+class FestivalSerializer(serializers.ModelSerializer):
+    festival_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Festival
+        fields='__all__'
+
+class GuideSerializer(serializers.ModelSerializer):
+    guide_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Guide
+        fields='__all__'
+
+class ItemSerializer(serializers.ModelSerializer):
+    item_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Item
         fields='__all__'
