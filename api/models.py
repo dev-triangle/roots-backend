@@ -97,3 +97,11 @@ class Guide(models.Model):
 
     def __str__(self):
         return(self.guide_name)
+
+class Purchase(models.Model):
+    item_foreign_key=models.ForeignKey(Item,on_delete=models.CASCADE)
+    user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+    date_of_purchase=models.DateField()
+
+    def __str__(self):
+        return(self.item_foreign_key)
