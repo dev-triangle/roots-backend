@@ -10,7 +10,7 @@ class ActivitiesView(viewsets.GenericViewSet,mixins.ListModelMixin):
     serializer_class=ActivitiesSerializer
     queryset=Activities.objects.all()
 
-class PlaceView(viewsets.GenericViewSet,mixins.ListModelMixin):
+class PlaceView(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
     serializer_class=PlaceSerializer
     queryset=Place.objects.all()
 
@@ -34,7 +34,8 @@ class GuideViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.List
     serializer_class=GuideSerializer
     queryset=Guide.objects.all()
 
-class PurchaseViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+class PurchaseViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.CreateModelMixin):
+    permission_classes=[IsAuthenticated]
     serializer_class=PurchaseSerializer
     queryset=Purchase.objects.all()
 

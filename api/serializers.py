@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import(User,Trending,Place,Activities,Guide,Item,Festival,Purchase)
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
+
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
     permission_classes=[IsAuthenticated]

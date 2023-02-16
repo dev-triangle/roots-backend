@@ -65,7 +65,7 @@ class Place(models.Model):
 class Activities(models.Model):
     activity_name=models.CharField(max_length=100)
     activity_image=models.ImageField(upload_to='activity_images')
-    place_foreign=models.CharField(max_length=100)
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     activity_description=models.TextField(max_length=1000)
 
     def __str__(self):
