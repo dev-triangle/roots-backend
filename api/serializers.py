@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import(User,Trending,Place,Activities,Guide,Item,Festival,Purchase)
+from .models import(User,Trending,Place,Activities,Guide,Item,Festival,Purchase,Attraction)
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -65,3 +65,9 @@ class PurchaseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Purchase
         fields='__all__'
+
+class AttractionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Attraction
+        fields='__all__'
+        

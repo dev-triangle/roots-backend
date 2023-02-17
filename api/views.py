@@ -1,6 +1,7 @@
 from rest_framework import generics,mixins,viewsets,status
-from .models import (User,Trending,Place,Activities,Guide,Item,Festival,Purchase)
-from .serializers import (UserSerializer,RegisterSerializer,TrendingSerializer,PlaceSerializer,ActivitiesSerializer,FestivalSerializer,ItemSerializer,GuideSerializer,PurchaseSerializer)
+from .models import (User,Trending,Place,Activities,Guide,Item,Festival,Purchase,Attraction)
+from .serializers import (UserSerializer,RegisterSerializer,TrendingSerializer,PlaceSerializer,ActivitiesSerializer,
+                          FestivalSerializer,ItemSerializer,GuideSerializer,PurchaseSerializer,AttractionSerializer)
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -38,6 +39,10 @@ class PurchaseViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.L
     permission_classes=[IsAuthenticated]
     serializer_class=PurchaseSerializer
     queryset=Purchase.objects.all()
+
+class AttractionViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    serializer_class=ActivitiesSerializer
+    queryset=Attraction.objects.all()
 
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]

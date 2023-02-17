@@ -105,3 +105,13 @@ class Purchase(models.Model):
 
     def __str__(self):
         return(self.item_foreign_key)
+    
+class Attraction(models.Model):
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    name=models.CharField(max_length=20)
+    image=models.ImageField(upload_to='attractions_images',blank=True,null=True)
+    desc=models.TextField(max_length=500)
+    contact_number=models.CharField(max_length=100)
+
+    def __str__(self):
+        return (self.name)
