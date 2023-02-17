@@ -119,5 +119,6 @@ class Booking(models.Model):
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     attact_foreign=models.ForeignKey(Attraction,on_delete=models.CASCADE)
     date=models.DateField()
+    image=models.URLField()
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
 
