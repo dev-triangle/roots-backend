@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import(User,Trending,Place,Activities,Guide,Item,Festival,Purchase,Attraction)
-from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
+from rest_framework.permissions import (IsAuthenticated,IsAuthenticatedOrReadOnly)
 
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
@@ -67,6 +67,7 @@ class PurchaseSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class AttractionSerializer(serializers.ModelSerializer):
+    image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
     class Meta:
         model=Attraction
         fields='__all__'

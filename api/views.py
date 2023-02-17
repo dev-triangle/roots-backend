@@ -41,7 +41,7 @@ class PurchaseViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.L
     queryset=Purchase.objects.all()
 
 class AttractionViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
-    serializer_class=ActivitiesSerializer
+    serializer_class=AttractionSerializer
     queryset=Attraction.objects.all()
 
 class BlacklistTokenView(APIView):
