@@ -1,8 +1,8 @@
 from rest_framework import generics,mixins,viewsets,status
-from .models import (User,Trending,Place,Activities,Guide,Item,Festival,Purchase,Attraction,Booking)
+from .models import (User,Trending,Place,Activities,Guide,Item,Festival,Purchase,Attraction,Booking,GuideDetail)
 from .serializers import (UserSerializer,RegisterSerializer,TrendingSerializer,PlaceSerializer,ActivitiesSerializer,
-                          FestivalSerializer,ItemSerializer,GuideSerializer,PurchaseSerializer,AttractionSerializer,BookingSerializer
-                          )
+                          FestivalSerializer,ItemSerializer,GuideSerializer,PurchaseSerializer,AttractionSerializer,BookingSerializer,
+                          GuideSerializer)
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -49,6 +49,12 @@ class BookingViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.Li
     permission_classes=[IsAuthenticated]
     serializer_class= BookingSerializer
     queryset=Booking.objects.all()
+
+class GuideDetailViewset(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    serializer_class=GuideSerializer
+    queryset=GuideDetail.objects.all()
+    
 
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]

@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import(User,Trending,Place,Activities,Guide,Item,Festival,Purchase,Attraction,Booking)
-from rest_framework.permissions import (IsAuthenticated,IsAuthenticatedOrReadOnly)
+from .models import(User,Trending,Place,Activities,Guide,Item,Festival,Purchase,Attraction,Booking,GuideDetail)
+from rest_framework.permissions import (IsAuthenticated)
 
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
@@ -76,4 +76,11 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model=Booking
         fields='__all__'
+
+class GuideDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=GuideDetail
+        fields='__all__'
+
+
         

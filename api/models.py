@@ -4,6 +4,11 @@ from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,BaseUserManager,PermissionsMixin)
 # Create your models here.
 
+GENDER_CHOICES=(
+    ('Male','Male'),
+    ('Female','Female'),
+    ('Others','Others')
+)
 class UserManager(BaseUserManager):
     def create_user(self,username,email,password=None):
         if username is None:
@@ -121,4 +126,20 @@ class Booking(models.Model):
     date=models.DateField()
     image=models.URLField()
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+
+class GuideDetail(models.Model):
+    user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=100)
+    image=models.ImageField(upload_to='guide_image',blank=True,null=True)
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    desc=models.TextField(max_length=200)
+    age=models.IntegerField()
+    gender=models.CharField(choices=GENDER_CHOICES,max_length=200)
+    contact=models.CharField(max_length=10)
+    address=models.TextField(max_length=200)
+
+    def __str__(self):
+        return(self.name)
+
+
 

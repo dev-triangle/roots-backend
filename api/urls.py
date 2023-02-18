@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path,include
 from rest_framework.routers import DefaultRouter
 from .views import (BlacklistTokenView,LoggedInUserView,RegisterView,TrendingViewSet,PlaceView,ActivitiesView,FestivalViewSet,
-                    GuideViewSet,ItemViewSet,PurchaseViewSet,AttractionViewSet,BookingViewSet)
+                    GuideViewSet,ItemViewSet,PurchaseViewSet,AttractionViewSet,BookingViewSet,GuideDetailViewset)
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
 router=DefaultRouter()
@@ -16,6 +16,7 @@ router.register('guides',GuideViewSet,basename='guides')
 router.register('purchases',PurchaseViewSet,basename='purchases')
 router.register('attractions',AttractionViewSet,basename='attractions')
 router.register('booking',BookingViewSet,basename='booking')
+router.register('guides',GuideDetailViewset,basename='guides')
 
 
 urlpatterns = [
