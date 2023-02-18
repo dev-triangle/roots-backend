@@ -2,6 +2,8 @@ from distutils.command.upload import upload
 from email.policy import default
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,BaseUserManager,PermissionsMixin)
+from cloudinary.models import CloudinaryField
+
 # Create your models here.
 
 GENDER_CHOICES=(
@@ -52,7 +54,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 
 class Trending(models.Model):
     place_name=models.CharField(max_length=100)
-    place_image=models.ImageField(upload_to='trending_images')
+    place_image=CloudinaryField('image')
     place_location=models.CharField(max_length=100)
     trending_item=models.CharField(max_length=100)
 
@@ -61,7 +63,7 @@ class Trending(models.Model):
 
 class Place(models.Model):
     place_name=models.CharField(max_length=100)
-    place_image=models.ImageField(upload_to='place_images')
+    place_image=CloudinaryField('image')
     place_description=models.TextField(max_length=1000)
 
     def __str__(self):
@@ -69,7 +71,7 @@ class Place(models.Model):
 
 class Activities(models.Model):
     activity_name=models.CharField(max_length=100)
-    activity_image=models.ImageField(upload_to='activity_images')
+    activity_image=CloudinaryField('image')
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     activity_description=models.TextField(max_length=1000)
 
@@ -80,7 +82,7 @@ class Festival(models.Model):
     festival_name=models.CharField(max_length=100)
     festival_desc=models.TextField(max_length=300)
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
-    festival_image=models.ImageField(upload_to='festival_image',blank=True,null=True)
+    festival_image=CloudinaryField('image')
 
     def __str__(self):
         return(self.festival_name)
@@ -89,14 +91,13 @@ class Item(models.Model):
     item_name=models.CharField(max_length=100)
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     item_desc=models.TextField(max_length=300)
-    item_image=models.ImageField(upload_to='item_image',blank=True,null=True)
-
+    item_image=CloudinaryField('image')
     def __str__(self):
         return(self.item_name)
     
 class Guide(models.Model):
     guide_name=models.CharField(max_length=100)
-    guide_image=models.ImageField(upload_to='guide_images',blank=True,null=True)
+    guide_image=CloudinaryField('image')
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     guide_description=models.TextField(max_length=200)
 
@@ -114,7 +115,7 @@ class Purchase(models.Model):
 class Attraction(models.Model):
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     name=models.CharField(max_length=20)
-    image=models.ImageField(upload_to='attractions_images',blank=True,null=True)
+    image=CloudinaryField('image')
     desc=models.TextField(max_length=500)
     contact_number=models.CharField(max_length=100)
 
@@ -130,7 +131,7 @@ class Booking(models.Model):
 class GuideDetail(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
     name=models.CharField(max_length=100)
-    image=models.ImageField(upload_to='guide_image',blank=True,null=True)
+    image=CloudinaryField('image')
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     desc=models.TextField(max_length=200)
     age=models.IntegerField()

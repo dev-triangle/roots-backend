@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -134,7 +137,7 @@ DATABASES = {
         'NAME': 'postgres', 
         'USER': 'postgres', 
         'PASSWORD': 'Roots@TechMinds',
-        'HOST': 'db.cadxqjnbadeusgfgqmmy.supabase.co', 
+        'HOST': 'db.jrntgwuwyuagcojregmt.supabase.co', 
         'PORT': '5432',
     }
 }
@@ -174,6 +177,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+cloudinary.config( 
+  cloud_name = "dofjrt5es", 
+  api_key = "323729299777531", 
+  api_secret = "sHqDWdHsegS49MQ-0wKwomvUJ-4",
+  secure = True
+)
 
 STATIC_URL = 'static/'
 
