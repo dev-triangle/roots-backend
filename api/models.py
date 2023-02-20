@@ -109,7 +109,7 @@ class Purchase(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
     date_of_purchase=models.DateField()
 
-    def __str__(self):
+    def __int__(self):
         return(self.item_foreign_key)
     
 class Attraction(models.Model):
