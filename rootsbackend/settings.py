@@ -15,6 +15,7 @@ from datetime import timedelta
 import os
 import cloudinary
 import cloudinary.uploader
+import dj_database_url
 import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -175,6 +176,12 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+# DATABASE_URL="postgres://postgres:Roots@TechMinds@db.jrntgwuwyuagcojregmt.supabase.co:6543/postgres"
+
+# DATABASES = {
+#     'default': dj_database_url.config()
+# }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
